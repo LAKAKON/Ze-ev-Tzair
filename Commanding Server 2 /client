@@ -1,0 +1,14 @@
+import socket
+SERVER=socket.gethostname()
+PORT=505
+s=socket.socket()
+s.connect((SERVER,PORT))
+print(f"connected to {SERVER}")
+while True:
+    com=input("enter command: ")
+    s.send(com.encode())
+    data=s.recv(1024).decode()
+    if (data == "goodbye"):
+        print(f"Server:{data}")
+        break
+    print(data)
